@@ -4,6 +4,7 @@ var uppercase = "ABCDEFGHIJKLMNOPQRSTUVQXYZ"
 var numbers = "0123456789"
 var specialChar = "!@#$%^&*()"
 //assignment code
+// var generatePassword;
 var generateBtn = document.querySelector("#generate")
 //write password to #password input
 function writePassword(){
@@ -11,6 +12,7 @@ function writePassword(){
     var passwordText = document.querySelector("#password");
         passwordText.value = password;
 }
+var pword = password;
 // create a generatePassword function and write all the loic within this function
 function generatePassword(){
 //TODO:Create confirm to ask user if they want capital letters and set to a var
@@ -22,9 +24,9 @@ var numsQuest = confirm("Would you like numbers in your password?")
 //TODO:create confirm to ask user if thyey want special characters and set to a var
 var spclQuest = confirm("Would you like special characters in your password?")
 //TODO:create prompt to ask user how many char they want their password to be(at least 8 and no more than 128) and set to a var
-var pwordLengthQuest = prompt("How long would you like your password? (Please select between 8 and 128 characters.)")
+var pwordLenQuest = prompt("How long would you like your password? (Please select between 8 and 128 characters.)")
 //TODO:create a conditional to make sure that the user has chosen at least one type of char
-var conditionQuest = prompt("")
+// var conditionQuest = prompt("")
 //TODO: create arrays for different character sets. (uppr,lowr,nums,spcl)
 var lowr = lowercase;
 var uppr = uppercase;
@@ -32,7 +34,6 @@ var nums = numbers;
 var spcl = specialChar;
 //TODO:create an empty array to hold user requested chars
 var pwordArray = [];
-
 //TODO:create if else statements that verify user confirms. based on their response push those specific characters to empty array. 
 if(upprQuest === true){
     pwordArray = pwordArray+uppr
@@ -49,21 +50,20 @@ if(numsQuest === true){
 if(spclQuest === true){
     pwordArray = pwordArray+spcl
 } 
+console.log = pwordArray;
 //TODO: create a var to hold the final results
 var finalPword;
-
-
 //TODO: I need a for loop to loop over my final array, it should run based on the results of the prompts when we asked user how many chars they like their pass to be, choose randomly from our final array that holds all the char that the user wanted , and save them to our finalPword var.
-for (var pwordLengthQuest = 0; i < pwordArray.length; i++) {
+for (var i = 0; i < pwordLenQuest; i++) {
     var randomNum = Math.floor(Math.random());
-    finalPword = finalPword+finalArray[randomNum];
+    finalPword = finalPword+pwordArray[randomNum];
 }
-
 //TODO: return the finalPass from this function outside of the for loop at the end on this function
 
-return password;
-
+return pword;
 }
+
+
 //add event listener to generate button
 generateBtn.addEventListener("click", writePassword());
 
