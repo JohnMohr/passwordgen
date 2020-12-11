@@ -4,7 +4,7 @@ var uppercase = "ABCDEFGHIJKLMNOPQRSTUVQXYZ"
 var numbers = "0123456789"
 var specialChar = "!@#$%^&*()"
 //assignment code
-var generateBin = document.querySelector("#generate")
+var generateBtn = document.querySelector("#generate")
 //write password to #password input
 function writePassword(){
     var password = generatePassword();
@@ -37,65 +37,64 @@ var pwordArray = [];
 if(upprQuest === true){
     pwordArray = pwordArray+uppr
 }
+
 if(lowrQuest === true){
     pwordArray = pwordArray+lowr
 }
+
 if(numsQuest === true){
     pwordArray = pwordArray+nums
 }
+
 if(spclQuest === true){
     pwordArray = pwordArray+spcl
-}
-for(pwordLengthQuest i = 0;i<pwordArray;i++)
+} 
 //TODO: create a var to hold the final results
 var finalPword;
 
+
 //TODO: I need a for loop to loop over my final array, it should run based on the results of the prompts when we asked user how many chars they like their pass to be, choose randomly from our final array that holds all the char that the user wanted , and save them to our finalPword var.
-for (var i = 0; i < pwLength; i++) {
-
+for (var pwordLengthQuest = 0; i < pwordArray.length; i++) {
+    var randomNum = Math.floor(Math.random());
+    finalPword = finalPword+finalArray[randomNum];
 }
-
-var randomNum = Math.floor(Math.random()) --is the length of the final array--
-inside the for loop ( finalPword = finalPword+finalArray[randomNum])
-
 
 //TODO: return the finalPass from this function outside of the for loop at the end on this function
 
 return password;
 
 }
-
-
-
-
-
 //add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword());
 
-var myFinalArrayOfChar = []
-var 
 
-if(spcl === true){
-    //push all the special chars in the empty array
-myFinalArrayOfChar = myFinalArrayOfChar+SpecialChar
 
-}
+// var randomNum = Math.floor(Math.random()) --is the length of the final array--
+// inside the for loop ( finalPword = finalPword+finalArray[randomNum])
+// var myFinalArrayOfChar = []
+// var 
 
-if(lowr === true){
-    //push all the lowercase in the empty array
-    myFinalArrayOfChar = myFinalArrayOfChar+lowercase
-}
-if(uppr === true){
+// if(spcl === true){
+//     //push all the special chars in the empty array
+// myFinalArrayOfChar = myFinalArrayOfChar+SpecialChar
+
+// }
+
+// if(lowr === true){
+//     //push all the lowercase in the empty array
+//     myFinalArrayOfChar = myFinalArrayOfChar+lowercase
+// }
+// if(uppr === true){
     
 
-}
-if(nums === true){
+// }
+// if(nums === true){
 
-}
-if(spcl === true){
+// }
+// if(spcl === true){
 
-}
+// }
 
-for( var i = 0; i < myFinalArrayOfChar; i++){
+// for( var i = 0; i < myFinalArrayOfChar; i++){
 
-}
+// }
