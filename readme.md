@@ -7,4 +7,4 @@ user is prompted how many characters their password should be.
 password is displayed in card-body textarea.
 
 
-Thanks to Aslan for help with the psuedo code.
+Thanks to Aslan for help with the initial psuedo code. It really helped me figure out how to make these things work. Thanks to Autoflower homework group for the guidance in going back to old subjects. 

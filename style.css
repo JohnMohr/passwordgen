@@ -1,137 +1,68 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* Import google font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* set body background image and stretch to fit screen, set text color and shadow for visibility */
+body{
+    font-family: Roboto;
+    background-color:darkcyan;
+    color: white;
+    text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.85);
 }
 
-html,
-body,
-.wrapper {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+/* ensure cursor is a pointer on all links - needed for copy link especially */
+a{
+    cursor: pointer;
 }
 
-body {
-  font-family: sans-serif;
-  background-color: #f9fbfd;
+/* add white space */
+h1{
+    margin: 30px auto;
+    text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.85);
 }
 
-.wrapper {
-  padding-top: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
+/* add white space */
+h2{
+    margin: 20px auto;
+    text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.85);
 }
 
-header {
-  text-align: center;
-  padding: 20px;
-  padding-top: 0px;
-  color: hsl(206, 17%, 28%);
+/* change button color  */
+button{
+    margin: 25px 8px 0 0;
+    color: black;
+    background-color: white !important;
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.85);
 }
 
-.card {
-  background-color: hsl(0, 0%, 100%);
-  border-radius: 5px;
-  border-width: 1px;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
-  color: hsl(206, 17%, 28%);
-  font-size: 18px;
-  margin: 0 auto;
-  max-width: 800px;
-  padding: 30px 40px;
+textarea{
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.85);
 }
 
-.card-header::after {
-  content: " ";
-  display: block;
-  width: 100%;
-  background: #e7e9eb;
-  height: 2px;
+
+p{
+    letter-spacing: 1.8px;
+    text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.85);
+}
+/* nudge copy link placement */
+i{
+    position: relative;
+    top: -2px;
 }
 
-.card-body {
-  min-height: 100px;
+/* add "glass" effect to main div */
+.resultWindow{
+    padding: 25px 50px;
+    border: 0.1px solid rgba(255,255,255,0.2);
+    background-color: rgba(230,230,255,0.2);
+    backdrop-filter: blur(7px);
+    border-radius: 8px;;
+    margin: 25px auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.79);
 }
 
-.card-footer {
-  text-align: center;
-}
-
-.card-footer::before {
-  content: " ";
-  display: block;
-  width: 100%;
-  background: #e7e9eb;
-  height: 2px;
-}
-
-.card-footer::after {
-  content: " ";
-  display: block;
-  clear: both;
-}
-
-.btn {
-  border: none;
-  background-color: hsl(360, 91%, 36%);
-  border-radius: 25px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 6px 0px rgba(0, 0, 0, 0.2) 0px 1px 1px
-    0px;
-  color: hsl(0, 0%, 100%);
-  display: inline-block;
-  font-size: 22px;
-  line-height: 22px;
-  margin: 16px 16px 16px 20px;
-  padding: 14px 34px;
-  text-align: center;
-  cursor: pointer;
-}
-
-button[disabled] {
-  cursor: default;
-  background: #c0c7cf;
-}
-
-.float-right {
-  float: right;
-}
-
-#password {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border: none;
-  display: block;
-  width: 100%;
-  padding-top: 15px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 85px;
-  font-size: 1.2rem;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 2px dashed #c0c7cf;
-  border-radius: 6px;
-  resize: none;
-  overflow: hidden;
-}
-
-@media (max-width: 690px) {
-  .btn {
-    font-size: 1rem;
-    margin: 16px 0px 0px 0px;
-    padding: 10px 15px;
-  }
-
-  #password {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 500px) {
-  .btn {
-    font-size: 0.8rem;
-  }
+@media (max-width: 768px) {
+    i{
+        position: relative;
+        top: 8px;        
+    }
 }
