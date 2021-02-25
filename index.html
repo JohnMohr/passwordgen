@@ -1,34 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Generator</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Password Generator</h1>
-      </header>
-      <div class="card">
-        <div class="card-header">
-          <h2>Generate a Password</h2>
-        </div>
-        <div class="card-body">
-          <textarea
-            readonly
-            id="password"
-            placeholder="Your Secure Password"
-            aria-label="Generated Password"
-          ></textarea>
-        </div>
-        <div class="card-footer">
-          <button id="generate" class="btn">Generate Password</button>
-        </div>
-      </div>
-    </div>
-    <script src="script.js"></script>
-  </body>
+    <!-- link bootstrap style -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- link font awesome icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- link local styles -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <main class="container">
+        <!-- main display window -->
+        <article class="resultWindow">
+            <section class="row">
+                <div class="col-md-12">
+                    <h1 class="text-center">Random Password Generator</h1>
+                </div>
+            </section>
+            <section class="row">
+                <div class="col-md-12">
+                    <h2>Password:</h2>
+                </div>
+            </section>
+            <section class="row">
+                <div class="col-md-11">        
+                    <!-- password displayed here -->
+                    <textarea id="passwordResult" class="form-control"></textarea>            
+                </div>
+                <div class="col-md-1">      
+                    <!-- this link copies password to clipboard -->
+                    <a onclick="copy()" title="Copy to clipboard">
+                        <i class="far fa-copy fa-4x"></i>
+                    </a>   
+                </div>
+            </section>  
+            <h2>Criteria</h2>
+            <!-- User selected criteria goes in this grid section -->
+            <section class="row">
+                <div class="col-md-3">
+                    <p>
+                        <strong>Password Length:</strong>
+                    </p>                    
+                </div>
+                <div class="col-md-9">
+                    <p id="passwordLength"></p>
+                </div>
+            </section>
+            <section class="row">
+                <div class="col-md-3">
+                    <p>
+                        <strong>Use lower case:</strong>
+                    </p>                    
+                </div>
+                <div class="col-md-9">
+                    <p id="useLowerCase"></p>
+                </div>
+            </section>
+            <section class="row">
+                <div class="col-md-3">
+                    <p>
+                        <strong>Use upper case:</strong>
+                    </p>                    
+                </div>
+                <div class="col-md-9">
+                    <p id="useUpperCase"></p>
+                </div>
+            </section>
+            <section class="row">
+                <div class="col-md-3">
+                    <p>
+                        <strong>Use numerals:</strong>
+                    </p>
+                </div>
+                <div class="col-md-9">
+                    <p id="useNumerals"></p>
+                </div>
+            </section>
+            <section class="row">
+                <div class="col-md-3">
+                    <p>
+                        <strong>Use special characters:</strong>
+                    </p>
+                </div>
+                <div class="col-md-9">
+                    <p id="useSpecialCharacters"></p>
+                </div>
+            </section>
+            <!-- control buttons to generate password and reset criteria -->
+            <section class="row">
+                <div class="col-md-12">
+                    <button class="btn" id="generate">Generate Password</button>
+                    <button class="btn" id="setCriteria">Set Criteria</button>
+                </div>
+            </section>
+        </article>
+        
+    </main>
+    <!-- link bootstrap js and local js file -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="./script.js"></script>    
+</body>
 </html>
