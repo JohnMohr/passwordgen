@@ -1,100 +1,148 @@
-//Set Variables for character sets
-var lowercase = "abcdefghijklmnopqrstuvqxyz"
-var uppercase = "ABCDEFGHIJKLMNOPQRSTUVQXYZ"
-var numbers = "0123456789"
-var specialChar = "!@#$%^&*()"
-//assignment code
-// var generatePassword;
-var generateBtn = document.querySelector("#generate")
-//write password to #password input
-function writePassword(){
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
-        passwordText.value = password;
-}
-var pword = password;
-// create a generatePassword function and write all the loic within this function
-function generatePassword(){
-//TODO:Create confirm to ask user if they want capital letters and set to a var
-var upprQuest = confirm("Would you like UPPERCASE letters in your password?")
-//TODO:create confirm to ask user if they want lowercase letters and set to a var
-var lowrQuest = confirm("would you like numbers in your password?")
-//TODO:create confirm to ask user if they want numbers and set to a var
-var numsQuest = confirm("Would you like numbers in your password?")
-//TODO:create confirm to ask user if thyey want special characters and set to a var
-var spclQuest = confirm("Would you like special characters in your password?")
-//TODO:create prompt to ask user how many char they want their password to be(at least 8 and no more than 128) and set to a var
-var pwordLenQuest = prompt("How long would you like your password? (Please select between 8 and 128 characters.)")
-//TODO:create a conditional to make sure that the user has chosen at least one type of char
-// var conditionQuest = prompt("")
-//TODO: create arrays for different character sets. (uppr,lowr,nums,spcl)
-var lowr = lowercase;
-var uppr = uppercase;
-var nums = numbers;
-var spcl = specialChar;
-//TODO:create an empty array to hold user requested chars
-var pwordArray = [];
-//TODO:create if else statements that verify user confirms. based on their response push those specific characters to empty array. 
-if(upprQuest === true){
-    pwordArray = pwordArray+uppr
-}
+// declare buttons and add event listeners
+var generateBtn = document.querySelector("#generate");
+var criteriaBtn = document.querySelector("#setCriteria");
 
-if(lowrQuest === true){
-    pwordArray = pwordArray+lowr
-}
+generateBtn.addEventListener("click", function(){generatePassword()})
+criteriaBtn.addEventListener("click", function(){setCriteria()})
 
-if(numsQuest === true){
-    pwordArray = pwordArray+nums
+// declare global variables for password criteria and set to user values
+var passwordLength;
+var lowerCaseCriteria;
+var upperCaseCriteria;
+var numberCriteria;
+var specialCriteria;
+
+// declare global array varialbles for possible digits
+var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var specialCharacters = ["!", "#", "$", "%", "&", "+", "@"];
+var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+function setCriteria() {
+
+    // get criteria from user
+    passwordLength = parseInt(prompt("Enter password length."));
+    lowerCaseCriteria = confirm("Use lower case digits.");
+    upperCaseCriteria = confirm("Use upper case digits");
+    numberCriteria = confirm("Use numeral digits.");
+    specialCriteria = confirm("Use special character digits.");        
+
+    // display criteria
+    document.getElementById("passwordLength").innerHTML = passwordLength;
+    document.getElementById("useLowerCase").innerHTML = lowerCaseCriteria;
+    document.getElementById("useUpperCase").innerHTML = upperCaseCriteria;
+    document.getElementById("useNumerals").innerHTML = numberCriteria;
+    document.getElementById("useSpecialCharacters").innerHTML = specialCriteria;
+
+    // if invalid criteria set, call setCriteria() again
+    if(!checkCriteria() || !checkLength()){
+        console.log("attempt to call setCriteria again.");
+        setCriteria();
+    }else{
+        // auto generate a password after criteria is set
+        generatePassword();
+    }    
 }
 
-if(spclQuest === true){
-    pwordArray = pwordArray+spcl
-} 
-console.log = pwordArray;
-//TODO: create a var to hold the final results
-var finalPword;
-//TODO: I need a for loop to loop over my final array, it should run based on the results of the prompts when we asked user how many chars they like their pass to be, choose randomly from our final array that holds all the char that the user wanted , and save them to our finalPword var.
-for (var i = 0; i < pwordLenQuest; i++) {
-    var randomNum = Math.floor(Math.random());
-    finalPword = finalPword+pwordArray[randomNum];
+// main function loops through getDigit() passwordLength times
+function generatePassword() {
+
+    console.log("generatePassword() fires.");
+    // check if user has set criteria yet - call setCriteria() if not
+    if (passwordLength !== undefined) {
+
+        // declare empty variable to store password for use later
+        var password = "";
+
+        // Check to make sure user has selected at least 1 criteria and appropriate length 
+        if (checkCriteria() && checkLength()) {
+            // console.log("passwordLength: ", passwordLength)
+
+            // loop through and concat getDigit() to password passwordLength times
+            for (var i = 0; i < passwordLength; i++) {
+
+                // store getDigit() result in a temporary variable for logging
+                var tempDigit = getDigit();
+                
+                // console.log("tempDigit: ", tempDigit);
+                password = password.concat(tempDigit);
+            }
+            console.log("Password: ", password);
+
+            // set html - passwordResult element's inner html to password
+            document.getElementById("passwordResult").innerHTML = password;
+        }
+
+        // criteria failed. attempt to set valid criteria again
+        else{
+            setCriteria();
+        }
+
+    }
+    // page is in initial state. set criteria before generating a password
+    else {
+        setCriteria();
+    }
 }
-//TODO: return the finalPass from this function outside of the for loop at the end on this function
 
-return pword;
+// check if at least 1 criteria selected will return true if at least 1 criteria selected - false otherwise
+function checkCriteria() {
+    if(!lowerCaseCriteria && !upperCaseCriteria && !numberCriteria && !specialCriteria){
+        alert("Select at least one criteria");
+    }
+    return lowerCaseCriteria || upperCaseCriteria || numberCriteria || specialCriteria;
 }
 
+// check if appropriate length entered - true if between 8 and 128 inclusive
+function checkLength() {
+    if(passwordLength < 8 || passwordLength > 128){
+        alert("Password must be at least 8 characters and no more than 128 characters");
+    }
+    return passwordLength >= 8 && passwordLength <= 128;
+}
 
-//add event listener to generate button
-generateBtn.addEventListener("click", writePassword());
+// returns single digit based on set criteria
+function getDigit() {
 
+    // empty array will hold all digits from selected criteria
+    var possibleDigits = [];
 
+    // adds all lower case digits to possibleDigits if lowerCaseCriteria === true 
+    if (lowerCaseCriteria) {
+        // console.log("lowerCaseCriteria: " + lowerCaseCriteria + " adding", lowerCase);
+        possibleDigits = possibleDigits.concat(lowerCase);
+    }
 
-// var randomNum = Math.floor(Math.random()) --is the length of the final array--
-// inside the for loop ( finalPword = finalPword+finalArray[randomNum])
-// var myFinalArrayOfChar = []
-// var 
+    // adds all upper case digits to possibleDigits if upperCaseCriteria === true
+    if (upperCaseCriteria) {
+        possibleDigits = possibleDigits.concat(upperCase);
+    }
 
-// if(spcl === true){
-//     //push all the special chars in the empty array
-// myFinalArrayOfChar = myFinalArrayOfChar+SpecialChar
+    // adds all numeral digits to possibleDigits if numberCriteria === true
+    if (numberCriteria) {
+        possibleDigits = possibleDigits.concat(numbers);
+    }
 
-// }
+    // adds all special character digits to possibleDigits if specialCriteria === true
+    if (specialCriteria) {
+        possibleDigits = possibleDigits.concat(specialCharacters);
+    }
 
-// if(lowr === true){
-//     //push all the lowercase in the empty array
-//     myFinalArrayOfChar = myFinalArrayOfChar+lowercase
-// }
-// if(uppr === true){
+    // console.log("possibleDigits: ", possibleDigits);
+
+    // select random element from possible digits and return it
+    return possibleDigits[Math.floor(Math.random() * possibleDigits.length)];
+}
+
+// copy password to clipboard
+function copy() {
+    var copyText = document.getElementById("passwordResult");
     
-
-// }
-// if(nums === true){
-
-// }
-// if(spcl === true){
-
-// }
-
-// for( var i = 0; i < myFinalArrayOfChar; i++){
-
-// }
+    // desktop syntax
+    copyText.select();
+    
+    // mobile syntax
+    copyText.setSelectionRange(0, 99999)
+    
+    document.execCommand("copy");
+}
